@@ -45,6 +45,10 @@ Ask and they shall be answered
 
 == Changelog ==
 
+= 1.0.1 =
+
+Added alternate google api url search maps.googleapis.com/maps/api/js - ADDED
+
 = 1.0.0 =
 
 initial release

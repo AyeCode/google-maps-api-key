@@ -66,7 +66,7 @@ function rgmk_find_add_key( $url, $original_url, $_context ) {
 		return $url;
 	}
 
-	if ( strstr( $url, "maps.google.com/maps/api/js" ) !== false ) {// it's a Google maps url
+	if ( strstr( $url, "maps.google.com/maps/api/js" ) !== false || strstr( $url, "maps.googleapis.com/maps/api/js" ) !== false ) {// it's a Google maps url
 
 		if ( strstr( $url, "key=" ) === false ) {// it needs a key
 			$url = $url . "&key=" . $key;
