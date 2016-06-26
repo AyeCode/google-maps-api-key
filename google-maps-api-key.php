@@ -34,13 +34,13 @@ define( "GMAPIKEY_VERSION", "1.0.0" );
 
 
 
-add_action( 'plugins_loaded', 'myplugin_load_textdomain' );
+add_action( 'plugins_loaded', 'rgmk_load_textdomain' );
 /**
  * Load plugin textdomain.
  *
  * @since 1.0.0
  */
-function myplugin_load_textdomain() {
+function rgmk_load_textdomain() {
 	load_plugin_textdomain( 'google-maps-api-key', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
 }
 
