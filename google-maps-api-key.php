@@ -69,7 +69,7 @@ function rgmk_find_add_key( $url, $original_url, $_context ) {
 	if ( strstr( $url, "maps.google.com/maps/api/js" ) !== false || strstr( $url, "maps.googleapis.com/maps/api/js" ) !== false ) {// it's a Google maps url
 
 		if ( strstr( $url, "key=" ) === false ) {// it needs a key
-			$url = $url . "&key=" . $key;
+			$url = add_query_arg( 'key',$key,$url);
 			$url = str_replace( "&#038;", "&amp;", $url ); // or $url = $original_url
 		}
 
