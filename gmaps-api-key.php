@@ -14,7 +14,7 @@
  * Version: 1.0.0
  * Author: Stiofan
  * Author URI: http://wpgeodirectory.com
- * Text Domain: google-maps-api-key
+ * Text Domain: gmaps-api-key
  * Domain Path: /languages
  * Requires at least: 3.1
  * Tested up to: 4.5
@@ -41,7 +41,7 @@ add_action( 'plugins_loaded', 'rgmk_load_textdomain' );
  * @since 1.0.0
  */
 function rgmk_load_textdomain() {
-	load_plugin_textdomain( 'google-maps-api-key', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( 'gmaps-api-key', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
 }
 
 
@@ -87,7 +87,7 @@ add_action( 'admin_menu', 'rgmk_add_admin_menu' );
  * @package GMAPIKEY
  */
 function rgmk_add_admin_menu() {
-	add_submenu_page( 'options-general.php', 'Google API KEY', 'Google API KEY', 'manage_options', 'google-maps-api-key', 'rgmk_add_admin_menu_html' );
+	add_submenu_page( 'options-general.php', 'Google API KEY', 'Google API KEY', 'manage_options', 'gmaps-api-key', 'rgmk_add_admin_menu_html' );
 }
 
 /**
@@ -104,19 +104,19 @@ function rgmk_add_admin_menu_html() {
 	}
 
 	if ( $updated ) {
-		echo '<div class="updated fade"><p><strong>' . __( 'Kay Updated!', 'google-maps-api-key' ) . '</strong></p></div>';
+		echo '<div class="updated fade"><p><strong>' . __( 'Kay Updated!', 'gmaps-api-key' ) . '</strong></p></div>';
 
 	}
 	?>
 	<div class="wrap">
 
-		<h2><?php _e( 'Retro Add Google Maps API KEY', 'google-maps-api-key' ); ?></h2>
-		<p><?php _e( 'This plugin will attempt to add your Google API KEY to any Google Maps JS file that has properly been enqueue.', 'google-maps-api-key' ); ?></p>
+		<h2><?php _e( 'Retro Add Google Maps API KEY', 'gmaps-api-key' ); ?></h2>
+		<p><?php _e( 'This plugin will attempt to add your Google API KEY to any Google Maps JS file that has properly been enqueue.', 'gmaps-api-key' ); ?></p>
 		<p><?php echo sprintf( __( 'To Get a Google Maps API KEY %sclick here%s', 'geodirectory' ), '<a target="_blank" href=\'https://console.developers.google.com/flows/enableapi?apiid=maps_backend,geocoding_backend,directions_backend,distance_matrix_backend,elevation_backend&keyType=CLIENT_SIDE&reusekey=true\'>', '</a>' ) ?></p>
 
-		<form method="post" action="options-general.php?page=google-maps-api-key">
-			<label for="rgmk_google_map_api_key"><?php _e( 'Enter Google Maps API KEY', 'google-maps-api-key' ); ?></label>
-			<input title="<?php _e( 'Add Google Maps API KEY', 'google-maps-api-key' ); ?>" type="text"
+		<form method="post" action="options-general.php?page=gmaps-api-key">
+			<label for="rgmk_google_map_api_key"><?php _e( 'Enter Google Maps API KEY', 'gmaps-api-key' ); ?></label>
+			<input title="<?php _e( 'Add Google Maps API KEY', 'gmaps-api-key' ); ?>" type="text"
 			       name="rgmk_google_map_api_key" id="rgmk_google_map_api_key"
 			       value="<?php echo esc_attr( get_option( 'rgmk_google_map_api_key' ) ); ?>"/>
 			<?php

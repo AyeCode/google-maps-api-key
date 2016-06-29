@@ -1,6 +1,5 @@
 === Google Maps API KEY ===
 Contributors: stiofansisland, paoltaia
-Donate link: https://wpgeodirectory.com
 Tags:  Google Maps, Google Maps KEY, Google Maps API KEY
 Requires at least: 3.1
 Tested up to: 4.5
@@ -44,10 +43,6 @@ Ask and they shall be answered
 
 
 == Changelog ==
-
-= 1.0.1 =
-
-Added alternate google api url search maps.googleapis.com/maps/api/js - ADDED
 
 = 1.0.0 =
 
