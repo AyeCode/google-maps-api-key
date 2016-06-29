@@ -8,7 +8,7 @@
  * @since       1.0.0
  *
  * @wordpress-plugin
- * Plugin Name: Google Maps API KEY
+ * Plugin Name: API KEY for Google Maps
  * Plugin URI: http://wpgeodirectory.com/
  * Description: Adds API KEY to Google maps calls if they have been enqueue correctly.
  * Version: 1.0.0

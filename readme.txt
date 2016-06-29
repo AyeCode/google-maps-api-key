@@ -1,4 +1,4 @@
-=== Google Maps API KEY ===
+=== API KEY for Google Maps ===
 Contributors: stiofansisland, paoltaia
 Tags:  Google Maps, Google Maps KEY, Google Maps API KEY
 Requires at least: 3.1
