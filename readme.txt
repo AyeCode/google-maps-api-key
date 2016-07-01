@@ -13,6 +13,10 @@ Retroactively add Google Maps API KEY to any theme or plugin.
 
 Retroactively add Google Maps API KEY to any theme or plugin.
 
+Simply activate, go to Settings>Google API KEY and enter your key.
+The plugin will then attempt to add this key to all the places it is needed on the front of your website.
+NOTE: this will only work if the Google API has been added as per WordPress standards)
+
 == Installation ==
 
 = Minimum Requirements =

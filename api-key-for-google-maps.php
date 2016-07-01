@@ -12,8 +12,8 @@
  * Plugin URI: http://wpgeodirectory.com/
  * Description: Adds API KEY to Google maps calls if they have been enqueue correctly.
  * Version: 1.0.0
- * Author: Stiofan
- * Author URI: http://wpgeodirectory.com
+ * Author: GeoDirectory
+ * Author URI: https://wpgeodirectory.com
  * Text Domain: gmaps-api-key
  * Domain Path: /languages
  * Requires at least: 3.1
