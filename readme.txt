@@ -1,9 +1,10 @@
 === API KEY for Google Maps ===
 Contributors: stiofansisland, paoltaia
 Tags:  Google Maps, Google Maps KEY, Google Maps API KEY
+Donate link: https://wpgeodirectory.com
 Requires at least: 3.1
-Tested up to: 4.5
-Stable tag: 1.0.0
+Tested up to: 4.7
+Stable tag: 1.1.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,6 +17,8 @@ Retroactively add Google Maps API KEY to any theme or plugin.
 Simply activate, go to Settings>Google API KEY and enter your key.
 The plugin will then attempt to add this key to all the places it is needed on the front of your website.
 NOTE: this will only work if the Google API has been added as per WordPress standards)
+
+The plugin was created by the GeoDirectory team: <https://wpgeodirectory.com>
 
 == Installation ==
 
@@ -45,8 +48,15 @@ Ask and they shall be answered
 
 == Screenshots ==
 
+1. Settings page.
+2. Generate API KEY.
+3. Copy API KEY, paste in Settings and save.
 
 == Changelog ==
+
+= 1.1.0 =
+
+Added a Generate API KEY button for easier generation of API KEY - ADDED
 
 = 1.0.0 =
 
