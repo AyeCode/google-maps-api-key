@@ -54,6 +54,10 @@ Ask and they shall be answered
 
 == Changelog ==
 
+= 1.1.1 =
+
+Updated Generate API KEY button to add access for all APIs - CHANGED
+
 = 1.1.0 =
 
 Added a Generate API KEY button for easier generation of API KEY - ADDED
