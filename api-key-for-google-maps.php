@@ -11,13 +11,13 @@
  * Plugin Name: API KEY for Google Maps
  * Plugin URI: http://wpgeodirectory.com/
  * Description: Adds API KEY to Google maps calls if they have been enqueue correctly.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: GeoDirectory
  * Author URI: https://wpgeodirectory.com
  * Text Domain: gmaps-api-key
  * Domain Path: /languages
  * Requires at least: 3.1
- * Tested up to: 4.7
+ * Tested up to: 4.9
  */
 
 // If this file is called directly, abort.
@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @since 1.0.0
  */
-define( "GMAPIKEY_VERSION", "1.1.0" );
+define( "GMAPIKEY_VERSION", "1.2.0" );
 
 
 add_action( 'plugins_loaded', 'rgmk_load_textdomain' );
@@ -105,7 +105,7 @@ function rgmk_add_admin_menu_html() {
 	}
 
 	if ( $updated ) {
-		echo '<div class="updated fade"><p><strong>' . __( 'Kay Updated!', 'gmaps-api-key' ) . '</strong></p></div>';
+		echo '<div class="updated fade"><p><strong>' . __( 'Key Updated!', 'gmaps-api-key' ) . '</strong></p></div>';
 
 	}
 	?>
@@ -114,13 +114,10 @@ function rgmk_add_admin_menu_html() {
 		<h2><?php _e( 'Retro Add Google Maps API KEY', 'gmaps-api-key' ); ?></h2>
 		<p><?php _e( 'This plugin will attempt to add your Google API KEY to any Google Maps JS file that has properly been enqueued.', 'gmaps-api-key' ); ?></p>
 		<p>
+			<?php $gm_api_url = 'https://console.developers.google.com/henhouse/?pb=["hh-1","maps_backend",null,[],"https://developers.google.com",null,["static_maps_backend","street_view_image_backend","maps_embed_backend","places_backend","geocoding_backend","directions_backend","distance_matrix_backend","geolocation","elevation_backend","timezone_backend","maps_backend"],null]';?>
+			<a id="gd-api-key" onclick='window.open("<?php echo wp_slash($gm_api_url);?>", "newwindow", "width=600, height=400"); return false;' href='<?php echo $gm_api_url;?>' class="button-primary" name="<?php _e('Generate API Key - ( MUST be logged in to your Google account )','gmaps-api-key');?>" ><?php _e('Generate API Key','gmaps-api-key');?></a>
 
-			<a href='https://console.developers.google.com/henhouse/?pb=["hh-1","maps_backend",null,[],"https://developers.google.com",null,["static_maps_backend","street_view_image_backend","maps_embed_backend","places_backend","geocoding_backend","directions_backend","distance_matrix_backend","geolocation","elevation_backend","timezone_backend","maps_backend"],null]&TB_iframe=true&width=600&height=400'
-			   class="thickbox button-primary"
-			   name="<?php _e( 'Generate API Key - ( MUST be logged in to your Google account )', 'gmaps-api-key' ); ?>">
-				<?php _e( 'Generate API Key', 'gmaps-api-key' ); ?>
-			</a>
-			<?php echo sprintf( __( 'or %sclick here%s to Get a Google Maps API KEY', 'geodirectory' ), '<a target="_blank" href=\'https://console.developers.google.com/flows/enableapi?apiid=static_maps_backend,street_view_image_backend,maps_embed_backend,places_backend,geocoding_backend,directions_backend,distance_matrix_backend,geolocation,elevation_backend,timezone_backend,maps_backend&keyType=CLIENT_SIDE&reusekey=true\'>', '</a>' ) ?>
+			<?php echo sprintf( __( 'or %sclick here%s to Get a Google Maps API KEY - ( MUST be logged in to your Google account )', 'gmaps-api-key' ), '<a target="_blank" href=\'https://console.developers.google.com/flows/enableapi?apiid=static_maps_backend,street_view_image_backend,maps_embed_backend,places_backend,geocoding_backend,directions_backend,distance_matrix_backend,geolocation,elevation_backend,timezone_backend,maps_backend&keyType=CLIENT_SIDE&reusekey=true\'>', '</a>' ) ?>
 		</p>
 
 		<form method="post" action="options-general.php?page=gmaps-api-key">

@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Google Maps API KEY 1.1.0\n"
+"Project-Id-Version: Google Maps API KEY 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-15 14:30+0000\n"
-"PO-Revision-Date: 2016-12-15 14:30+0000\n"
+"POT-Creation-Date: 2018-06-25 11:10+0100\n"
+"PO-Revision-Date: 2018-06-25 11:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: GeoDirectory <info@ayecode.io>\n"
 "Language: en_US\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: api-key-for-google-maps.php:108
-msgid "Kay Updated!"
+msgid "Key Updated!"
 msgstr ""
 
 #: api-key-for-google-maps.php:114
@@ -32,32 +32,34 @@ msgid ""
 "file that has properly been enqueued."
 msgstr ""
 
-#: api-key-for-google-maps.php:120
+#: api-key-for-google-maps.php:118
 msgid "Generate API Key - ( MUST be logged in to your Google account )"
 msgstr ""
 
-#: api-key-for-google-maps.php:121
+#: api-key-for-google-maps.php:118
 msgid "Generate API Key"
 msgstr ""
 
-#: api-key-for-google-maps.php:123
+#: api-key-for-google-maps.php:120
 #, php-format
-msgid "or %sclick here%s to Get a Google Maps API KEY"
+msgid ""
+"or %sclick here%s to Get a Google Maps API KEY - ( MUST be logged in to your "
+"Google account )"
 msgstr ""
 
-#: api-key-for-google-maps.php:127
+#: api-key-for-google-maps.php:124
 msgid "Enter Google Maps API KEY"
 msgstr ""
 
-#: api-key-for-google-maps.php:128
+#: api-key-for-google-maps.php:125
 msgid "Add Google Maps API KEY"
 msgstr ""
 
-#: api-key-for-google-maps.php:130
+#: api-key-for-google-maps.php:127
 msgid "Enter your API KEY here"
 msgstr ""
 
-#: api-key-for-google-maps.php:160
+#: api-key-for-google-maps.php:157
 #, php-format
 msgid ""
 "API KEY for Google Maps was created for free by %sGeoDirecotry%s - The "
