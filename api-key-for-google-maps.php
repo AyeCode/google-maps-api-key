@@ -11,13 +11,13 @@
  * Plugin Name: API KEY for Google Maps
  * Plugin URI: http://wpgeodirectory.com/
  * Description: Adds API KEY to Google maps calls if they have been enqueue correctly.
- * Version: 1.2.0
+ * Version: 1.2.1
  * Author: GeoDirectory
  * Author URI: https://wpgeodirectory.com
  * Text Domain: gmaps-api-key
  * Domain Path: /languages
  * Requires at least: 3.1
- * Tested up to: 4.9
+ * Tested up to: 5.9
  */
 
 // If this file is called directly, abort.
@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @since 1.0.0
  */
-define( "GMAPIKEY_VERSION", "1.2.0" );
+define( "GMAPIKEY_VERSION", "1.2.1" );
 
 
 add_action( 'plugins_loaded', 'rgmk_load_textdomain' );
@@ -154,7 +154,7 @@ function rgmk_show_geodirectory_offer() {
 		?>
 		<div class="notice notice-info is-dismissible rgmk-offer-notice">
 			<img src="<?php echo plugin_dir_url( __FILE__ ) . '/gd_banner.jpg'; ?>"/>
-			<p><?php echo sprintf( __( 'API KEY for Google Maps was created for free by %sGeoDirecotry%s - The WordPress directory pluign. Discount Code: APIKEY25OFF', 'sample-text-domain' ), '<a target="_blank" href="https://wpgeodirectory.com/" >', '</a>' ); ?></p>
+			<p><?php echo sprintf( __( 'API KEY for Google Maps was created for free by %sGeoDirectory%s - The WordPress directory pluign. Discount Code: APIKEY25OFF', 'sample-text-domain' ), '<a target="_blank" href="https://wpgeodirectory.com/" >', '</a>' ); ?></p>
 		</div>
 		<?php
 	}
