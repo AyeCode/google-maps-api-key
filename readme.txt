@@ -4,7 +4,7 @@ Tags:  Google Maps, Google Maps KEY, Google Maps API KEY
 Donate link: https://wpgeodirectory.com
 Requires at least: 3.1
 Tested up to: 6.0
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -53,6 +53,9 @@ Ask and they shall be answered
 3. Copy API KEY, paste in Settings and save.
 
 == Changelog ==
+
+= 1.2.3 =
+* Plugin version update - CHANGED
 
 = 1.2.2 =
 * Compatibility checked with WordPress 6.0 - CHECKED
