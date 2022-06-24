@@ -54,6 +54,9 @@ Ask and they shall be answered
 
 == Changelog ==
 
+= 1.2.4 =
+* Generate Google API Key is no longer working - FIXED
+
 = 1.2.3 =
 * Plugin version update - CHANGED
 
