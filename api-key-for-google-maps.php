@@ -118,13 +118,11 @@ function rgmk_add_admin_menu_html() {
         <h2><?php _e( 'Retro Add Google Maps API KEY', 'gmaps-api-key' ); ?></h2>
         <p><?php _e( 'This plugin will attempt to add your Google API KEY to any Google Maps JS file that has properly been enqueued.', 'gmaps-api-key' ); ?></p>
         <p>
-			<?php $gm_api_url = 'https://console.developers.google.com/henhouse/?pb=["hh-1","maps_backend",null,[],"https://developers.google.com",null,["static_maps_backend","street_view_image_backend","maps_embed_backend","places_backend","geocoding_backend","directions_backend","distance_matrix_backend","geolocation","elevation_backend","timezone_backend","maps_backend"],null]'; ?>
+			<?php $gm_api_url = 'https://console.cloud.google.com/apis/enableflow?apiid=maps_backend,static_maps_backend,street_view_image_backend,maps_embed_backend,places_backend,geocoding_backend,directions_backend,distance_matrix_backend,geolocation,elevation_backend,timezone_backend&keyType=CLIENT_SIDE&reusekey=true&pli=1'; ?>
             <a id="gd-api-key"
                onclick='window.open("<?php echo wp_slash( $gm_api_url ); ?>", "newwindow", "width=600, height=400"); return false;'
                href='<?php echo $gm_api_url; ?>' class="button-primary"
-               name="<?php _e( 'Generate API Key - ( MUST be logged in to your Google account )', 'gmaps-api-key' ); ?>"><?php _e( 'Generate API Key', 'gmaps-api-key' ); ?></a>
-
-			<?php echo sprintf( __( 'or %sclick here%s to Get a Google Maps API KEY - ( MUST be logged in to your Google account )', 'gmaps-api-key' ), '<a target="_blank" href=\'https://console.developers.google.com/flows/enableapi?apiid=static_maps_backend,street_view_image_backend,maps_embed_backend,places_backend,geocoding_backend,directions_backend,distance_matrix_backend,geolocation,elevation_backend,timezone_backend,maps_backend&keyType=CLIENT_SIDE&reusekey=true\'>', '</a>' ) ?>
+               name="<?php _e( 'Generate API Key - ( MUST be logged in to your Google account )', 'gmaps-api-key' ); ?>"><?php _e( 'Generate API Key', 'gmaps-api-key' ); ?></a> <?php echo __( '( MUST be logged in to your Google account )', 'gmaps-api-key' ); ?>
         </p>
 
         <form method="post" action="options-general.php?page=gmaps-api-key">
