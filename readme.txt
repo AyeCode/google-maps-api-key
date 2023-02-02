@@ -4,7 +4,7 @@ Tags:  Google Maps, Google Maps KEY, Google Maps API KEY, Google Maps callback, 
 Donate link: https://wpgeodirectory.com
 Requires at least: 3.1
 Tested up to: 6.1
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -56,10 +56,8 @@ Ask and they shall be answered
 
 == Changelog ==
 
-= 1.2.6 (2023-02-02) =
+= 1.2.7 (2023-02-02) =
 * Add .gitattributes file - ADDED
-
-= 1.2.4 (2023-02-02) =
 * Generate Google API Key is no longer working - FIXED
 * Loading the Google Maps JavaScript API without a callback is not supported - CHANGED
 
