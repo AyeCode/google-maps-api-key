@@ -11,7 +11,7 @@
  * Plugin Name: API KEY for Google Maps
  * Plugin URI: http://wpgeodirectory.com/
  * Description: Adds API KEY to Google maps calls if they have been enqueue correctly.
- * Version: 1.2.5
+ * Version: 1.2.6
  * Author: AyeCode Ltd
  * Author URI: https://wpgeodirectory.com
  * Text Domain: gmaps-api-key
@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @since 1.0.0
  */
-define( "GMAPIKEY_VERSION", "1.2.5" );
+define( "GMAPIKEY_VERSION", "1.2.6" );
 
 
 add_action( 'plugins_loaded', 'rgmk_load_textdomain' );
