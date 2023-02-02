@@ -43,8 +43,6 @@ function rgmk_load_textdomain() {
 	load_plugin_textdomain( 'gmaps-api-key', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
 }
 
-
-add_filter( 'clean_url', 'rgmk_find_add_key', 99, 3 );
 /**
  * Clean url.
  *
@@ -65,23 +63,34 @@ function rgmk_find_add_key( $url, $original_url, $_context ) {
 		return $url;
 	}
 
-	if ( strstr( $url, "maps.google.com/maps/api/js" ) !== false || strstr( $url, "maps.googleapis.com/maps/api/js" ) !== false ) {// it's a Google maps url
-		$key = esc_attr( $key );
-		if ( strstr( $url, "key=" ) === false ) {// it needs a key
-			$url = add_query_arg( 'key', $key, $url );
-			$url = str_replace( "&#038;", "&amp;", $url ); // or $url = $original_url
+	// Check Google Maps API Url.
+	if ( strstr( $url, "maps.google.com/maps/api/js" ) !== false || strstr( $url, "maps.googleapis.com/maps/api/js" ) !== false ) {
+		if ( strstr( $url, "key=" ) === false ) {
+			// Key not exists
+			$url = str_replace( "&#038;", "&amp;", $url );
+			$url = add_query_arg( 'key', esc_attr( $key ), $url );
+			$url = str_replace( "&key=", "&amp;key=", $url );
 		} else {
-			$url = remove_query_arg( 'key', $url );
-			$url = add_query_arg( 'key', $key, $url );
-			$url = str_replace( "&#038;", "&amp;", $url ); // or $url = $original_url
+			// Key exists
+			if ( strstr( $url, "key=" . $key ) === false ) {
+				$url = str_replace( array( "&#038;", "&amp;key=" ), array( "&amp;", "&key=" ), $url );
+				$url = remove_query_arg( 'key', $url );
+				$url = add_query_arg( 'key', esc_attr( $key ), $url );
+				$url = str_replace( "&key=", "&amp;key=", $url );
+			}
 		}
 
+		// Since January 2023 Google made callback as a required parameter.
+		if ( strstr( $url, "?callback=" ) === false && strstr( $url, "&callback=" ) === false && strstr( $url, ";callback=" ) === false ) {
+			$url = str_replace( "&#038;", "&amp;", $url );
+			$url = add_query_arg( 'callback', 'rgmkInitGoogleMaps', $url );
+			$url = str_replace( "&callback=", "&amp;callback=", $url );
+		}
 	}
 
 	return $url;
 }
-
-add_action( 'admin_menu', 'rgmk_add_admin_menu' );
+add_filter( 'clean_url', 'rgmk_find_add_key', 99, 3 );
 
 /**
  * Add the admin menu link.
@@ -92,6 +101,7 @@ add_action( 'admin_menu', 'rgmk_add_admin_menu' );
 function rgmk_add_admin_menu() {
 	add_submenu_page( 'options-general.php', 'Google API KEY', 'Google API KEY', 'manage_options', 'gmaps-api-key', 'rgmk_add_admin_menu_html' );
 }
+add_action( 'admin_menu', 'rgmk_add_admin_menu' );
 
 /**
  * The html output for the settings page.
@@ -177,3 +187,25 @@ function rgmk_show_geodirectory_offer() {
 }
 
 add_action( 'admin_notices', 'rgmk_show_geodirectory_offer' );
+
+/**
+ * Add Google Maps API callback script to head.
+ *
+ * @since 1.2.4
+ */
+function rgmk_add_callback_script() {
+	$script = '<script type="text/javascript">function rgmkInitGoogleMaps(){window.rgmkGoogleMapsCallback=true;try{jQuery(document).trigger("rgmkGoogleMapsLoad")}catch(err){}}</script>';
+
+	/**
+	 * Filters the Google Maps JavaScript callback.
+	 *
+	 * @since 2.2.23
+	 *
+	 * @param string $script The callback script.
+	 */
+	$script = apply_filters( 'rgmk_google_map_callback_script', $script );
+
+	echo $script;
+}
+add_action( 'wp_head', 'rgmk_add_callback_script', 1 );
+add_action( 'admin_head', 'rgmk_add_callback_script', 1 );
