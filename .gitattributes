@@ -1,0 +1,6 @@
+# Items to ignore when downloading release
+
+.gitattributes export-ignore
+.gitignore export-ignore
+/.github/ export-ignore
+/.wordpress-org/ export-ignore
