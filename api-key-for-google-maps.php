@@ -11,13 +11,13 @@
  * Plugin Name: API KEY for Google Maps
  * Plugin URI: http://wpgeodirectory.com/
  * Description: Adds API KEY to Google maps calls if they have been enqueue correctly.
- * Version: 1.2.7
+ * Version: 1.2.8
  * Author: AyeCode Ltd
  * Author URI: https://wpgeodirectory.com
  * Text Domain: gmaps-api-key
  * Domain Path: /languages
  * Requires at least: 3.1
- * Tested up to: 6.1
+ * Tested up to: 6.2
  */
 
 // If this file is called directly, abort.
@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @since 1.0.0
  */
-define( "GMAPIKEY_VERSION", "1.2.7" );
+define( "GMAPIKEY_VERSION", "1.2.8" );
 
 
 add_action( 'plugins_loaded', 'rgmk_load_textdomain' );
@@ -122,33 +122,21 @@ function rgmk_add_admin_menu_html() {
 	if ( $updated ) {
 		echo '<div class="updated fade"><p><strong>' . __( 'Key Updated!', 'gmaps-api-key' ) . '</strong></p></div>';
 	}
+
+	$gm_api_url = 'https://console.cloud.google.com/apis/enableflow?apiid=maps_backend,static_maps_backend,street_view_image_backend,maps_embed_backend,places_backend,geocoding_backend,directions_backend,distance_matrix_backend,geolocation,elevation_backend,timezone_backend&keyType=CLIENT_SIDE&reusekey=true&pli=1';
 	?>
     <div class="wrap">
-
         <h2><?php _e( 'Retro Add Google Maps API KEY', 'gmaps-api-key' ); ?></h2>
         <p><?php _e( 'This plugin will attempt to add your Google API KEY to any Google Maps JS file that has properly been enqueued.', 'gmaps-api-key' ); ?></p>
-        <p>
-			<?php $gm_api_url = 'https://console.cloud.google.com/apis/enableflow?apiid=maps_backend,static_maps_backend,street_view_image_backend,maps_embed_backend,places_backend,geocoding_backend,directions_backend,distance_matrix_backend,geolocation,elevation_backend,timezone_backend&keyType=CLIENT_SIDE&reusekey=true&pli=1'; ?>
-            <a id="gd-api-key"
-               onclick='window.open("<?php echo wp_slash( $gm_api_url ); ?>", "newwindow", "width=600, height=400"); return false;'
-               href='<?php echo $gm_api_url; ?>' class="button-primary"
-               name="<?php _e( 'Generate API Key - ( MUST be logged in to your Google account )', 'gmaps-api-key' ); ?>"><?php _e( 'Generate API Key', 'gmaps-api-key' ); ?></a> <?php echo __( '( MUST be logged in to your Google account )', 'gmaps-api-key' ); ?>
-        </p>
+        <p><a id="gd-api-key" onclick='window.open("<?php echo wp_slash( $gm_api_url ); ?>", "newwindow", "width=600, height=400"); return false;' href='<?php echo $gm_api_url; ?>' class="button-primary" name="<?php _e( 'Generate API Key - ( MUST be logged in to your Google account )', 'gmaps-api-key' ); ?>"><?php _e( 'Generate API Key', 'gmaps-api-key' ); ?></a> <?php echo __( '( MUST be logged in to your Google account )', 'gmaps-api-key' ); ?></p>
 
         <form method="post" action="options-general.php?page=gmaps-api-key">
             <label for="rgmk_google_map_api_key"><?php _e( 'Enter Google Maps API KEY', 'gmaps-api-key' ); ?></label>
-            <input title="<?php _e( 'Add Google Maps API KEY', 'gmaps-api-key' ); ?>" type="text"
-                   name="rgmk_google_map_api_key" id="rgmk_google_map_api_key"
-                   placeholder="<?php _e( 'Enter your API KEY here', 'gmaps-api-key' ); ?>"
-                   style="padding: 6px; width:50%; display: block;"
-                   value="<?php echo esc_attr( wp_unslash( get_option( 'rgmk_google_map_api_key' ) ) ); ?>"/>
-
+            <input title="<?php _e( 'Add Google Maps API KEY', 'gmaps-api-key' ); ?>" type="text" name="rgmk_google_map_api_key" id="rgmk_google_map_api_key" placeholder="<?php _e( 'Enter your API KEY here', 'gmaps-api-key' ); ?>" style="padding: 6px; width:50%; display: block;" value="<?php echo esc_attr( wp_unslash( get_option( 'rgmk_google_map_api_key' ) ) ); ?>"/>
 			<?php
-
 			wp_nonce_field( 'rgmk_save', 'rgmk_nonce' );
 
 			submit_button();
-
 			?>
         </form>
 
@@ -157,9 +145,7 @@ function rgmk_add_admin_menu_html() {
     <div class="">
         <hr/>
         <br>
-        <a target="_blank" href="https://mapfix.dev/"
-           class="button button-primary button-hero"><?php _e( 'Check for API key errors', 'gmaps-api-key' ); ?> <span
-                    class="dashicons dashicons-external" style="line-height: 2;"></span></a>
+        <a target="_blank" href="https://mapfix.dev/" class="button button-primary button-hero"><?php _e( 'Check for API key errors', 'gmaps-api-key' ); ?> <span class="dashicons dashicons-external" style="line-height: 2;"></span></a>
     </div>
 	<?php
 }
