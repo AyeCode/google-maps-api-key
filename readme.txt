@@ -2,10 +2,11 @@
 Contributors: stiofansisland, paoltaia
 Tags:  Google Maps, Google Maps KEY, Google Maps API KEY, Google Maps callback, Google Maps API callback
 Donate link: https://wpgeodirectory.com
-Requires at least: 3.1
-Tested up to: 6.2
-Stable tag: 1.2.8
-License: GPLv2
+Requires at least: 5.0
+Tested up to: 6.3
+Stable tag: 1.2.9
+Requires PHP: 5.6
+License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Retroactively add Google Maps API KEY to any theme or plugin.
@@ -26,8 +27,8 @@ The plugin was created by the GeoDirectory team: <https://wpgeodirectory.com>
 
 = Minimum Requirements =
 
-* WordPress 3.1 or greater
-* PHP version 5.2.4 or greater
+* WordPress 5.0 or greater
+* PHP version 5.6 or greater
 * MySQL version 5.0 or greater
 
 = Automatic installation =
@@ -55,6 +56,9 @@ Ask and they shall be answered
 3. Copy API KEY, paste in Settings and save.
 
 == Changelog ==
+
+= 1.2.9 (2023-08-10) =
+* WordPress v6.3 compatibility - CHANGED
 
 = 1.2.8 (2023-03-30) =
 * WordPress v6.2 compatibility - CHANGED
