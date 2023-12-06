@@ -3,8 +3,8 @@ Contributors: stiofansisland, paoltaia
 Tags:  Google Maps, Google Maps KEY, Google Maps API KEY, Google Maps callback, Google Maps API callback
 Donate link: https://wpgeodirectory.com
 Requires at least: 5.0
-Tested up to: 6.3
-Stable tag: 1.2.9
+Tested up to: 6.4
+Stable tag: 1.2.10
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -56,6 +56,9 @@ Ask and they shall be answered
 3. Copy API KEY, paste in Settings and save.
 
 == Changelog ==
+
+= 1.2.10 (2023-12-06) =
+* WordPress v6.4 compatibility check - CHANGED
 
 = 1.2.9 (2023-08-10) =
 * WordPress v6.3 compatibility - CHANGED
