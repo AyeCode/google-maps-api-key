@@ -3,8 +3,8 @@ Contributors: stiofansisland, paoltaia
 Tags:  Google Maps, Google Maps KEY, Google Maps API KEY, Google Maps callback, Google Maps API callback
 Donate link: https://wpgeodirectory.com
 Requires at least: 5.0
-Tested up to: 6.4
-Stable tag: 1.2.10
+Tested up to: 6.5
+Stable tag: 1.2.11
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -39,7 +39,7 @@ In the search field type Google Maps API KEY and click Search Plugins. Once you'
 
 = Manual installation =
 
-The manual installation method involves downloading the plugin and uploading it to your webserver via your favourite FTP application. The WordPress codex will tell you more [here](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation).
+The manual installation method involves downloading the plugin and uploading it to your webserver via your favourite FTP application. The WordPress codex will tell you more [here](https://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation).
 
 = Updating =
 
@@ -57,16 +57,19 @@ Ask and they shall be answered
 
 == Changelog ==
 
-= 1.2.10 (2023-12-06) =
+= 1.2.11 - 2024-04-11 =
+* WordPress v6.5 compatibility check - CHANGED
+
+= 1.2.10 - 2023-12-06 =
 * WordPress v6.4 compatibility check - CHANGED
 
-= 1.2.9 (2023-08-10) =
+= 1.2.9 - 2023-08-10 =
 * WordPress v6.3 compatibility - CHANGED
 
-= 1.2.8 (2023-03-30) =
+= 1.2.8 - 2023-03-30 =
 * WordPress v6.2 compatibility - CHANGED
 
-= 1.2.7 (2023-02-02) =
+= 1.2.7 - 2023-02-02 =
 * Add .gitattributes file - ADDED
 * Generate Google API Key is no longer working - FIXED
 * Loading the Google Maps JavaScript API without a callback is not supported - CHANGED
@@ -83,16 +86,13 @@ Ask and they shall be answered
 * Compatibility checked with WordPress 5.9
 
 = 1.2.0 =
-
-iframe api generation broken (by Google iframe restrictions) changed to new window popup - FIXED
-Updated Generate API KEY button to add access for all APIs - CHANGED
+* frame api generation broken (by Google iframe restrictions) changed to new window popup - FIXED
+* Updated Generate API KEY button to add access for all APIs - CHANGED
 
 = 1.1.0 =
-
-Added a Generate API KEY button for easier generation of API KEY - ADDED
+* Added a Generate API KEY button for easier generation of API KEY - ADDED
 
 = 1.0.0 =
-
-initial release
+* Initial release
 
 == Upgrade Notice ==
