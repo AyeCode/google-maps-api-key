@@ -58,7 +58,7 @@ Ask and they shall be answered
 == Changelog ==
 
 = 1.2.12 - 2024-08-21 =
-* WordPress v6.5 compatibility check - CHANGED
+* WordPress v6.6 compatibility check - CHANGED
 
 = 1.2.11 - 2024-04-11 =
 * WordPress v6.5 compatibility check - CHANGED
