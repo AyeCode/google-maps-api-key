@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Google Maps API KEY 1.2.13\n"
+"Project-Id-Version: Google Maps API KEY 1.2.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-28 21:37+0530\n"
-"PO-Revision-Date: 2024-11-28 21:37+0530\n"
+"POT-Creation-Date: 2025-12-03 19:43+0530\n"
+"PO-Revision-Date: 2025-12-03 19:43+0530\n"
 "Last-Translator: \n"
 "Language-Team: AyeCode Ltd <contact@ayecode.io>\n"
 "Language: en_US\n"
@@ -20,51 +20,55 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: api-key-for-google-maps.php:123
+#: api-key-for-google-maps.php:122
 msgid "Key Updated!"
 msgstr ""
 
-#: api-key-for-google-maps.php:129
+#: api-key-for-google-maps.php:128
 msgid "Retro Add Google Maps API KEY"
 msgstr ""
 
-#: api-key-for-google-maps.php:130
+#: api-key-for-google-maps.php:129
 msgid ""
 "This plugin will attempt to add your Google API KEY to any Google Maps JS "
 "file that has properly been enqueued."
 msgstr ""
 
-#: api-key-for-google-maps.php:131
-msgid "Generate API Key - ( MUST be logged in to your Google account )"
-msgstr ""
-
-#: api-key-for-google-maps.php:131
+#: api-key-for-google-maps.php:134 api-key-for-google-maps.php:135
 msgid "Generate API Key"
 msgstr ""
 
-#: api-key-for-google-maps.php:131
-msgid "( MUST be logged in to your Google account )"
-msgstr ""
-
-#: api-key-for-google-maps.php:134
-msgid "Enter Google Maps API KEY"
+#: api-key-for-google-maps.php:135
+msgid "Generate API Key - ( MUST be logged in to your Google account )"
 msgstr ""
 
 #: api-key-for-google-maps.php:135
+msgid "MUST be logged in to your Google account"
+msgstr ""
+
+#: api-key-for-google-maps.php:138
+msgid "Google Maps API KEY"
+msgstr ""
+
+#: api-key-for-google-maps.php:139
 msgid "Add Google Maps API KEY"
 msgstr ""
 
-#: api-key-for-google-maps.php:135
+#: api-key-for-google-maps.php:139
 msgid "Enter your API KEY here"
 msgstr ""
 
-#: api-key-for-google-maps.php:148
+#: api-key-for-google-maps.php:139
+msgid "Enter the Google Maps API Key."
+msgstr ""
+
+#: api-key-for-google-maps.php:149
 msgid "Check for API key errors"
 msgstr ""
 
-#: api-key-for-google-maps.php:168
+#: api-key-for-google-maps.php:170
 #, php-format
 msgid ""
-"API KEY for Google Maps was created for free by %sGeoDirectory%s - The "
+"API KEY for Google Maps was created for free by %1$sGeoDirectory%2$s - The "
 "WordPress directory plugin. Discount Code: APIKEY25OFF"
 msgstr ""
