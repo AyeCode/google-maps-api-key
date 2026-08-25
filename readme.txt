@@ -3,7 +3,7 @@ Contributors: stiofansisland, paoltaia
 Tags:  Google Maps, Google Maps KEY, Google Maps API KEY, Google Maps callback, Google Maps API callback
 Donate link: https://wpgeodirectory.com
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Stable tag: 1.2.15
 Requires PHP: 7.4
 License: GPLv3
@@ -22,6 +22,10 @@ NOTE: this will only work if the Google API has been added as per WordPress stan
 Since January 2023 Google Maps JavaScript API requires callback parameter. This plugin also fixes JavaScript Error: [Loading the Google Maps JavaScript API without a callback is not supported](https://developers.google.com/maps/documentation/javascript/url-params#required_parameters).
 
 The plugin was created by the GeoDirectory team: <https://wpgeodirectory.com>
+
+== Security ==
+
+To report a security vulnerability, please review our [vulnerability disclosure policy](https://ayecode.io/vulnerability-disclosure-policy/).
 
 == Installation ==
 
