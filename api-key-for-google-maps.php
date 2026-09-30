@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the main GeoDirectory plugin file, here we declare and call the important stuff
+ * Main plugin file for API KEY for Google Maps.
  *
  * @package     GMAPIKEY
  * @copyright   2016 AyeCode Ltd
@@ -10,8 +10,8 @@
  * @wordpress-plugin
  * Plugin Name: API KEY for Google Maps
  * Plugin URI: https://wpgeodirectory.com/
- * Description: Adds API KEY to Google maps calls if they have been enqueue correctly.
- * Version: 1.2.15
+ * Description: Automatically adds the Google API key and the required callback to Google Maps JavaScript API scripts enqueued by any theme or plugin.
+ * Version: 1.2.16
  * Author: AyeCode Ltd
  * Author URI: https://wpgeodirectory.com
  * Text Domain: gmaps-api-key
@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @since 1.0.0
  */
-define( "GMAPIKEY_VERSION", "1.2.15" );
+define( "GMAPIKEY_VERSION", "1.2.16" );
 
 
 add_action( 'plugins_loaded', 'rgmk_load_textdomain' );
@@ -44,19 +44,68 @@ function rgmk_load_textdomain() {
 }
 
 /**
+ * Sanitize a Google Maps API key.
+ *
+ * @since 1.2.16
+ *
+ * @param string $key API key.
+ *
+ * @return string Sanitized API key.
+ */
+function rgmk_sanitize_api_key( $key ) {
+	if ( ! is_scalar( $key ) ) {
+		return '';
+	}
+
+	return preg_replace( '/[^A-Za-z0-9_\-]/', '', (string) $key );
+}
+
+/**
+ * Get the saved Google Maps API key.
+ *
+ * @since 1.2.16
+ *
+ * @return string API key.
+ */
+function rgmk_get_api_key() {
+	return rgmk_sanitize_api_key( get_option( 'rgmk_google_map_api_key' ) );
+}
+
+/**
+ * Check whether a url is a Google Maps JavaScript API url.
+ *
+ * @since 1.2.16
+ *
+ * @param string $url Url.
+ *
+ * @return bool True if the url host and path belong to the Google Maps JavaScript API.
+ */
+function rgmk_is_google_maps_js_url( $url ) {
+	$parts = wp_parse_url( html_entity_decode( $url, ENT_QUOTES ) );
+
+	if ( empty( $parts['host'] ) || empty( $parts['path'] ) ) {
+		return false;
+	}
+
+	$host = strtolower( $parts['host'] );
+	$path = untrailingslashit( $parts['path'] );
+
+	return in_array( $host, array( 'maps.google.com', 'maps.googleapis.com' ), true ) && '/maps/api/js' === $path;
+}
+
+/**
  * Clean url.
+ *
+ * @since   1.0.0
  *
  * @param string $url Url.
  * @param string $original_url Original url.
  * @param string $_context Context.
  *
  * @return string Modified url.
- * @since   1.0.0
- * @package GMAPIKEY
- *
  */
 function rgmk_find_add_key( $url, $original_url, $_context ) {
-	$key = get_option( 'rgmk_google_map_api_key' );
+	$key = rgmk_get_api_key();
 
 	// If no key added no point in checking
 	if ( ! $key ) {
@@ -64,19 +113,22 @@ function rgmk_find_add_key( $url, $original_url, $_context ) {
 	}
 
 	// Check Google Maps API Url.
-	if ( strstr( $url, "maps.google.com/maps/api/js" ) !== false || strstr( $url, "maps.googleapis.com/maps/api/js" ) !== false ) {
+	if ( rgmk_is_google_maps_js_url( $url ) ) {
+		// Only HTML encode the ampersand when the url is escaped for display.
+		$amp = 'display' === $_context ? '&amp;' : '&';
+
 		if ( strstr( $url, "key=" ) === false ) {
 			// Key not exists
 			$url = str_replace( "&#038;", "&amp;", $url );
-			$url = add_query_arg( 'key', esc_attr( $key ), $url );
-			$url = str_replace( "&key=", "&amp;key=", $url );
+			$url = add_query_arg( 'key', rawurlencode( $key ), $url );
+			$url = str_replace( "&key=", $amp . "key=", $url );
 		} else {
 			// Key exists
 			if ( strstr( $url, "key=" . $key ) === false ) {
 				$url = str_replace( array( "&#038;", "&amp;key=" ), array( "&amp;", "&key=" ), $url );
 				$url = remove_query_arg( 'key', $url );
-				$url = add_query_arg( 'key', esc_attr( $key ), $url );
-				$url = str_replace( "&key=", "&amp;key=", $url );
+				$url = add_query_arg( 'key', rawurlencode( $key ), $url );
+				$url = str_replace( "&key=", $amp . "key=", $url );
 			}
 		}
 
@@ -84,7 +136,7 @@ function rgmk_find_add_key( $url, $original_url, $_context ) {
 		if ( strstr( $url, "?callback=" ) === false && strstr( $url, "&callback=" ) === false && strstr( $url, ";callback=" ) === false ) {
 			$url = str_replace( "&#038;", "&amp;", $url );
 			$url = add_query_arg( 'callback', 'rgmkInitGoogleMaps', $url );
-			$url = str_replace( "&callback=", "&amp;callback=", $url );
+			$url = str_replace( "&callback=", $amp . "callback=", $url );
 		}
 	}
 
@@ -114,7 +166,7 @@ function rgmk_add_admin_menu_html() {
 	$updated = false;
 
 	if ( isset( $_POST['rgmk_google_map_api_key'] ) && ! empty( $_POST['rgmk_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['rgmk_nonce'] ) ), 'rgmk_save' ) && current_user_can( 'manage_options' ) ) {
-		$key     = sanitize_text_field( wp_unslash( $_POST['rgmk_google_map_api_key'] ) );
+		$key     = rgmk_sanitize_api_key( sanitize_text_field( wp_unslash( $_POST['rgmk_google_map_api_key'] ) ) );
 		$updated = update_option( 'rgmk_google_map_api_key', $key );
 	}
 
@@ -127,16 +179,16 @@ function rgmk_add_admin_menu_html() {
 	<div class="wrap">
 		<h2><?php esc_html_e( 'Retro Add Google Maps API KEY', 'gmaps-api-key' ); ?></h2>
 		<p><?php esc_html_e( 'This plugin will attempt to add your Google API KEY to any Google Maps JS file that has properly been enqueued.', 'gmaps-api-key' ); ?></p>
-		<form method="post" action="options-general.php?page=gmaps-api-key">
+		<form method="post" action="<?php echo esc_url( admin_url( 'options-general.php?page=gmaps-api-key' ) ); ?>">
 		<table class="form-table" role="presentation">
 			<tbody>
 				<tr>
 					<th scope="row"><label for="gd-api-key"><?php esc_html_e( 'Generate API Key', 'gmaps-api-key' ); ?></label></th>
-					<td><a id="gd-api-key" onclick='window.open("<?php echo wp_slash( $gm_api_url );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>", "newwindow", "width=600, height=400"); return false;' href="<?php echo esc_url( $gm_api_url ); ?>" class="button-primary" name="<?php esc_attr_e( 'Generate API Key - ( MUST be logged in to your Google account )', 'gmaps-api-key' ); ?>"><?php esc_html_e( 'Generate API Key', 'gmaps-api-key' ); ?></a><p class="description"><?php esc_html_e( 'MUST be logged in to your Google account', 'gmaps-api-key' ); ?></p></td>
+					<td><a id="gd-api-key" onclick='window.open(this.href, "newwindow", "noopener,noreferrer,width=600,height=400"); return false;' href="<?php echo esc_url( $gm_api_url ); ?>" target="_blank" rel="noopener noreferrer" class="button-primary" name="<?php esc_attr_e( 'Generate API Key - ( MUST be logged in to your Google account )', 'gmaps-api-key' ); ?>"><?php esc_html_e( 'Generate API Key', 'gmaps-api-key' ); ?></a><p class="description"><?php esc_html_e( 'MUST be logged in to your Google account', 'gmaps-api-key' ); ?></p></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="rgmk_google_map_api_key"><?php esc_html_e( 'Google Maps API KEY', 'gmaps-api-key' ); ?></label></th>
-					<td><input type="text" name="rgmk_google_map_api_key" id="rgmk_google_map_api_key" class="regular-text" title="<?php esc_html_e( 'Add Google Maps API KEY', 'gmaps-api-key' ); ?>" placeholder="<?php echo esc_attr__( 'Enter your API KEY here', 'gmaps-api-key' ); ?>" value="<?php echo esc_attr( get_option( 'rgmk_google_map_api_key' ) ); ?>"><?php wp_nonce_field( 'rgmk_save', 'rgmk_nonce' ); ?><p class="description"><?php esc_html_e( 'Enter the Google Maps API Key.', 'gmaps-api-key' ); ?></p></td>
+					<td><input type="text" name="rgmk_google_map_api_key" id="rgmk_google_map_api_key" class="regular-text" title="<?php esc_attr_e( 'Add Google Maps API KEY', 'gmaps-api-key' ); ?>" placeholder="<?php echo esc_attr__( 'Enter your API KEY here', 'gmaps-api-key' ); ?>" value="<?php echo esc_attr( rgmk_get_api_key() ); ?>"><?php wp_nonce_field( 'rgmk_save', 'rgmk_nonce' ); ?><p class="description"><?php esc_html_e( 'Enter the Google Maps API Key.', 'gmaps-api-key' ); ?></p></td>
 				</tr>
 			</tbody>
 		</table>
@@ -146,7 +198,7 @@ function rgmk_add_admin_menu_html() {
 	<div class="">
 		<hr/>
 		<br>
-		<a target="_blank" href="https://mapfix.dev/" class="button button-primary button-hero"><?php esc_html_e( 'Check for API key errors', 'gmaps-api-key' ); ?> <span class="dashicons dashicons-external" style="line-height: 2;"></span></a>
+		<a target="_blank" rel="noopener noreferrer" href="https://mapfix.dev/" class="button button-primary button-hero"><?php esc_html_e( 'Check for API key errors', 'gmaps-api-key' ); ?> <span class="dashicons dashicons-external" style="line-height: 2;"></span></a>
 	</div>
 	<?php
 }
@@ -158,16 +210,16 @@ function rgmk_add_admin_menu_html() {
  * @package GMAPIKEY
  */
 function rgmk_show_geodirectory_offer() {
-	if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'gmaps-api-key' ) {
+	if ( isset( $_REQUEST['page'] ) && 'gmaps-api-key' === sanitize_key( wp_unslash( $_REQUEST['page'] ) ) && current_user_can( 'manage_options' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( defined( 'GEODIRECTORY_VERSION' ) ) {
 			// do nothing
 		} else {
 			?>
 			<div class="notice notice-info is-dismissible rgmk-offer-notice">
-				<img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . '/gd_banner.jpg' ); ?>"/>
+				<img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . 'gd_banner.jpg' ); ?>" alt="<?php esc_attr_e( 'GeoDirectory', 'gmaps-api-key' ); ?>"/>
 				<p><?php
 				/* translators: 1: link open tag, 2: link close tag. */
-				echo wp_sprintf( __( 'API KEY for Google Maps was created for free by %1$sGeoDirectory%2$s - The WordPress directory plugin. Discount Code: APIKEY25OFF', 'gmaps-api-key' ), '<a target="_blank" href="https://wpgeodirectory.com/" >', '</a>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+				echo wp_kses_post( wp_sprintf( __( 'API KEY for Google Maps was created for free by %1$sGeoDirectory%2$s - The WordPress directory plugin. Discount Code: APIKEY25OFF', 'gmaps-api-key' ), '<a target="_blank" rel="noopener noreferrer" href="https://wpgeodirectory.com/">', '</a>' ) ); ?></p>
 			</div>
 			<?php
 		}
