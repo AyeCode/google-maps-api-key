@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the main GeoDirectory plugin file, here we declare and call the important stuff
+ * Main plugin file for API KEY for Google Maps.
  *
  * @package     GMAPIKEY
  * @copyright   2016 AyeCode Ltd
@@ -10,8 +10,8 @@
  * @wordpress-plugin
  * Plugin Name: API KEY for Google Maps
  * Plugin URI: https://wpgeodirectory.com/
- * Description: Adds API KEY to Google maps calls if they have been enqueue correctly.
- * Version: 1.2.15
+ * Description: Automatically adds the Google API key and the required callback to Google Maps JavaScript API scripts enqueued by any theme or plugin.
+ * Version: 1.2.16
  * Author: AyeCode Ltd
  * Author URI: https://wpgeodirectory.com
  * Text Domain: gmaps-api-key
@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @since 1.0.0
  */
-define( "GMAPIKEY_VERSION", "1.2.15" );
+define( "GMAPIKEY_VERSION", "1.2.16" );
 
 
 add_action( 'plugins_loaded', 'rgmk_load_textdomain' );

@@ -4,24 +4,45 @@ Tags:  Google Maps, Google Maps KEY, Google Maps API KEY, Google Maps callback, 
 Donate link: https://wpgeodirectory.com
 Requires at least: 6.0
 Tested up to: 7.1
-Stable tag: 1.2.15
+Stable tag: 1.2.16
 Requires PHP: 7.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Retroactively add Google Maps API KEY to any theme or plugin.
+Add your Google Maps API key to any theme or plugin that loads Google Maps, and fix the missing callback error, without editing code.
 
 == Description ==
 
-Retroactively add Google Maps API KEY to any theme or plugin.
+Many themes and plugins load Google Maps without an API key, or without a setting to enter one. Google requires an API key for every Maps JavaScript API request, so these maps fail with "This page can't load Google Maps correctly" or show a "For development purposes only" watermark.
 
-Simply activate, go to Settings>Google API KEY and enter your key.
-The plugin will then attempt to add this key to all the places it is needed on the front of your website.
-NOTE: this will only work if the Google API has been added as per WordPress standards)
+**API KEY for Google Maps** fixes this without touching theme or plugin code. Enter your key once and the plugin adds it to every Google Maps JavaScript API script enqueued on the site.
 
-Since January 2023 Google Maps JavaScript API requires callback parameter. This plugin also fixes JavaScript Error: [Loading the Google Maps JavaScript API without a callback is not supported](https://developers.google.com/maps/documentation/javascript/url-params#required_parameters).
+= Features =
 
-The plugin was created by the GeoDirectory team: <https://wpgeodirectory.com>
+* Adds your API key to Google Maps JavaScript API scripts enqueued by any theme or plugin.
+* Replaces an outdated or different key already present in the script URL with your own.
+* Adds the callback parameter Google has required since January 2023, fixing the JavaScript error [Loading the Google Maps JavaScript API without a callback is not supported](https://developers.google.com/maps/documentation/javascript/url-params#required_parameters).
+* Works on the front end of your site and in the WordPress admin.
+* One-click **Generate API Key** button that opens the Google Cloud Console with the Maps APIs selected.
+* Quick link to a free tool that checks your site for Google Maps API key errors.
+* Lightweight: a single settings field and a tiny inline script. The saved key is removed when you delete the plugin.
+
+= How to use =
+
+1. Activate the plugin and go to **Settings > Google API KEY**.
+2. Click **Generate API Key** (you must be signed in to your Google account), or paste a key you already have.
+3. Click **Save Changes**. Your maps now load with your key.
+
+= Requirements and tips =
+
+* The theme or plugin must load Google Maps the standard WordPress way (with `wp_enqueue_script()`). Scripts that are hard-coded into templates or injected by JavaScript can not be changed.
+* Browser API keys are visible in your page source. In the Google Cloud Console, restrict your key to your website's domain (HTTP referrers) and to the Maps APIs you use.
+
+= For developers =
+
+When the Google Maps API has loaded, the plugin sets `window.rgmkGoogleMapsCallback` to `true` and triggers the jQuery event `rgmkGoogleMapsLoad` on `document`. Use the `rgmk_google_map_callback_script` filter to change the callback script.
+
+The plugin was created by the [GeoDirectory](https://wpgeodirectory.com) team.
 
 == Security ==
 
@@ -61,7 +82,7 @@ Ask and they shall be answered
 
 == Changelog ==
 
-= 1.2.16 - 2026-09-TBD =
+= 1.2.16 - 2026-09-30 =
 * Enhanced data sanitization and output escaping - CHANGED/SECURITY
 * Remove saved API key when the plugin is deleted - CHANGED
 
