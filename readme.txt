@@ -61,6 +61,10 @@ Ask and they shall be answered
 
 == Changelog ==
 
+= 1.2.16 - 2026-09-TBD =
+* Enhanced data sanitization and output escaping - CHANGED/SECURITY
+* Remove saved API key when the plugin is deleted - CHANGED
+
 = 1.2.15 - 2026-04-09 =
 * WordPress v7.0 compatibility check - COMPATIBILITY
 
